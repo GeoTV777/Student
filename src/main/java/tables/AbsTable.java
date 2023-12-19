@@ -16,17 +16,19 @@ public class AbsTable {
     }
 
     public void create() {
-        String sqlRequest = String.format("CREATE TABLE IF NOT EXIST %S (%S)", this.tableName, converMapColumnToString());
+        String sqlRequest = String.format("CREATE TABLE IF NOT EXIST %S (%S)", this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
         db.close();
     }
 
-    private String converMapColumnToString() {
-        final String result = columns.entrySet().stream()
-                .map((Map.Entry entry) -> String.format("%s %s",
-                        entry.getKey(), entry.getValue().collect(Collectors.joing(","))));
+    private String convertMapColumnsToString() {
+        String result = (String)this.columns.entrySet().stream().map((entry) -> {
+            return String.format("%s %s", entry.getKey(), entry.getValue());
+        }).collect(Collectors.joining(", "));
+        return result;
     }
+
     public void writeAll() {
         db = new MySQLConnector();
         final String sqlRequestWiteAnswer(sqlRequest);

@@ -10,6 +10,12 @@ public class Student {
         this.sex = sex;
         this. groupID = groupID;
     }
+    public Student(String studentFio, String sex, long groupID) {
+        this.id = id;
+        this.studentFio = studentFio;
+        this.sex = sex;
+        this. groupID = groupID;
+    }
     public long getId() {
         return id;
     }

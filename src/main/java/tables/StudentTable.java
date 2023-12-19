@@ -13,12 +13,18 @@ public class StudentTable extends AbsTable{
     public StudentTable(String tableName) {
         super("Student");
         columns = new HashMap<>();
-        columns.put("id", "bigint");
+        columns.put("id", "bigint PRIMARY kEY AUTO_INCREMENT");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
         columns.put("groupID", "bigint");
         create();
     }
+    public void insert(Student student) {
+        db = new MySQLConnector();
+        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ($s, %s, %d)",
+                tableName,student.getFio(), student.getSex(), student.getGroupID() );
+    }
+
 // 5 задание, но тут надо подтягивать значения из других таблиц
 // SELECT st.id, st.fio, st.sex, g.name, c.fio
 // FROM student as st
@@ -37,11 +43,10 @@ public class StudentTable extends AbsTable{
 //    FROM student
 //    WHERE sex = 'woman';
 
-    public ArrayList<Student> selectWomen(){
-        String sqlQuery = String.format(" SELECT %s FROM %s WHERE %s = 'woman';",studentFio, tableName, sex);
+    public ArrayList<Student> selectWomen(Student student){
+              String sqlQuery = String.format(" SELECT %s FROM %s WHERE %s = 'woman';",student.getFio(), tableName, student.getSex());
         return select(sqlQuery);
     }
-// как подтянуть значения? в классе student эти поля приватные...
 
 
 
