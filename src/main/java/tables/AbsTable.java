@@ -2,9 +2,10 @@ package tables;
 
 import db.IDBConnector;
 import db.MySQLConnector;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AbsTable {
     protected String tableName;
@@ -16,6 +17,7 @@ public class AbsTable {
     }
 
     public void create() {
+        this.columns = columns;
         String sqlRequest = String.format("CREATE TABLE IF NOT EXIST %S (%S)", this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
@@ -29,9 +31,10 @@ public class AbsTable {
         return result;
     }
 
-    public void writeAll() {
+    public void selectAll() {
         db = new MySQLConnector();
-        final String sqlRequestWiteAnswer(sqlRequest);
+        String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
+        ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);
 
         try {
             int columns = rs.getMetaData().getColumnCount();

@@ -10,9 +10,13 @@ public class MySQLConnector implements IDBConnector {
 
     private static Connection connection = null;
     private static Statement statement = null;
+
+    public MySQLConnector() {
+        connect();
+    }
+
     private void connect() {
         ISettings reader = (ISettings) new PropertiesReader();
-
         Map<String, String> settings = reader.read();
         if (connection == null){
             try {

@@ -10,10 +10,10 @@ import java.util.HashMap;
 
 public class StudentTable extends AbsTable{
 
-    public StudentTable(String tableName) {
+    public StudentTable() {
         super("Student");
         columns = new HashMap<>();
-        columns.put("id", "bigint PRIMARY kEY AUTO_INCREMENT");
+        columns.put("id", "bigint PRIMARY KEY AUTO_INCREMENT");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
         columns.put("groupID", "bigint");
@@ -21,8 +21,11 @@ public class StudentTable extends AbsTable{
     }
     public void insert(Student student) {
         db = new MySQLConnector();
-        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ($s, %s, %d)",
-                tableName,student.getFio(), student.getSex(), student.getGroupID() );
+        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%'s, '%s', '%d')",
+                tableName, student.getFio(), student.getSex(), student.getGroupID());
+        db.executeRequest(sqlQuery);
+        db.close();
+
     }
 
 // 5 задание, но тут надо подтягивать значения из других таблиц
@@ -43,10 +46,11 @@ public class StudentTable extends AbsTable{
 //    FROM student
 //    WHERE sex = 'woman';
 
-    public ArrayList<Student> selectWomen(Student student){
-              String sqlQuery = String.format(" SELECT %s FROM %s WHERE %s = 'woman';",student.getFio(), tableName, student.getSex());
+    public ArrayList<Student> selectWomen(String sex,  String studentFio){
+        String sqlQuery = String.format(" SELECT %s FROM %s WHERE sex = 'woman';", studentFio, tableName, sex);
         return select(sqlQuery);
     }
+// как подтянуть значения? в классе student эти поля приватные...
 
 
 
@@ -57,7 +61,7 @@ public class StudentTable extends AbsTable{
         try {
         while (rs.next()){
             students.add(new Student(
-                    rs.getLong("id"),
+//                    rs.getLong("id"),
                     rs.getString("studentFio"),
                     rs.getString("sex"),
                     rs.getLong("groupID")
