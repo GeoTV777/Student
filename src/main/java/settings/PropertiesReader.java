@@ -8,6 +8,7 @@ import java.util.Properties;
 
 public class PropertiesReader implements ISettings {
 
+    @Override
     public Map<String, String> read() {
         Map<String, String> props = new HashMap<>();
         try(InputStream input = getClass()
