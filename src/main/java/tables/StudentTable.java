@@ -21,7 +21,7 @@ public class StudentTable extends AbsTable{
     }
     public void insert(Student student) {
         db = new MySQLConnector();
-        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%'s, '%s', '%d')",
+        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%s', '%s', '%d')",
                 tableName, student.getFio(), student.getSex(), student.getGroupID());
         db.executeRequest(sqlQuery);
         db.close();
@@ -47,7 +47,7 @@ public class StudentTable extends AbsTable{
 //    WHERE sex = 'woman';
 
     public ArrayList<Student> selectWomen(String sex,  String studentFio){
-        String sqlQuery = String.format(" SELECT %s FROM %s WHERE sex = 'woman';", studentFio, tableName, sex);
+        String sqlQuery = String.format("SELECT %s FROM %s WHERE sex = 'woman';", studentFio, tableName, sex);
         return select(sqlQuery);
     }
 // как подтянуть значения? в классе student эти поля приватные...
@@ -59,14 +59,12 @@ public class StudentTable extends AbsTable{
     db = new MySQLConnector();
     ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
-        while (rs.next()){
-            students.add(new Student(
+        while (rs.next()) students.add(new Student(
 //                    rs.getLong("id"),
-                    rs.getString("studentFio"),
-                    rs.getString("sex"),
-                    rs.getLong("groupID")
-            ));
-        }
+                rs.getString("studentFio"),
+                rs.getString("sex"),
+                rs.getLong("groupID")
+        ));
     } catch (SQLException sqlException) {
         sqlException.printStackTrace();
     } finally {

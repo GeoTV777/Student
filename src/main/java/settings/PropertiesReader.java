@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class PropertiesReader {
+public class PropertiesReader implements ISettings {
 
     public Map<String, String> read() {
         Map<String, String> props = new HashMap<>();

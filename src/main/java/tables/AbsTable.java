@@ -18,7 +18,7 @@ public class AbsTable {
 
     public void create() {
         this.columns = columns;
-        String sqlRequest = String.format("CREATE TABLE IF NOT EXIST %S (%S)", this.tableName, convertMapColumnsToString());
+        String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %S (%S)", this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
         db.close();
