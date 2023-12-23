@@ -22,7 +22,6 @@ public class Main {
         studentTable.insert(new Student("Светлова Светлана Петровна", "woman",3));
         studentTable.insert(new Student( "Петров Федор Петрович", "man",2));
 
-//                ArrayList<Student> studentCount = studentTable.selectCountStudent();
         int studentCount = studentTable.selectCountStudent();
         System.out.println("Total student count: " + studentCount);
         }
