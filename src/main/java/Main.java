@@ -22,10 +22,10 @@ public class Main {
         studentTable.insert(new Student("Светлова Светлана Петровна", "woman",3));
         studentTable.insert(new Student( "Петров Федор Петрович", "man",2));
 
-        ArrayList<Student> students = studentTable.selectCountStudent();
-        for(Student tmp: students) {
-            System.out.println(tmp.toString());
+//                ArrayList<Student> studentCount = studentTable.selectCountStudent();
+        int studentCount = studentTable.selectCountStudent();
+        System.out.println("Total student count: " + studentCount);
         }
 
     }
-}
+

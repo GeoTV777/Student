@@ -37,9 +37,18 @@ public class StudentTable extends AbsTable{
 // 6 задание: вывести на экран количество студентов
 //    SELECT COUNT * as student_count FROM student;
 
-    public ArrayList<Student> selectCountStudent() {
-        String sqlQuery = String.format(" SELECT COUNT * AS student_count FROM %s;", tableName);
-        return select(sqlQuery);
+    public int selectCountStudent() {
+        String sqlQuery = String.format("SELECT COUNT(*) AS student_count FROM %s;", tableName);
+        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+        int count = 0;
+        try {
+            if (rs.next()) {
+                count = rs.getInt("student_count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return count;
     }
 // 7 задание: вывести только студенток
 //SELECT student_fio
