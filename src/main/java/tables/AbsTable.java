@@ -2,8 +2,11 @@ package tables;
 
 import db.IDBConnector;
 import db.MySQLConnector;
+import objects.Student;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -31,7 +34,7 @@ public class AbsTable {
         return result;
     }
 
-    public void selectAll() {
+    public ArrayList<Student> selectAll() {
         db = new MySQLConnector();
         String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
         ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);
@@ -50,5 +53,8 @@ public class AbsTable {
         } finally {
             db.close();
         }
+        return null;
     }
+
+
 }

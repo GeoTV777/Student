@@ -19,12 +19,21 @@ public class StudentTable extends AbsTable{
         columns.put("groupID", "bigint");
         create();
     }
+    public ArrayList<Student> selectAll() {
+       String sqlQuery = String.format("SELECT * FROM %s", tableName);
+        return select(sqlQuery);
+    }
+
     public void insert(Student student) {
         db = new MySQLConnector();
         String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%s', '%s', '%d')",
                 tableName, student.getFio(), student.getSex(), student.getGroupID());
         db.executeRequest(sqlQuery);
         db.close();
+
+    }
+
+    public void update(String) {
 
     }
 
@@ -81,5 +90,18 @@ public class StudentTable extends AbsTable{
     }
         return students;
     }
-
-}
+    public boolean isEmpty() {
+        db = new MySQLConnector();
+        String sqlQuery = String.format("SELECT COUNT (*) AS count FROM %s", tableName);
+        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+        try {
+            if(rs.next()) {
+                int count = rs.getInt("count");
+                return  count == 0;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+        }
+        return true;
+    }
+  }
