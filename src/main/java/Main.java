@@ -28,6 +28,16 @@ public class Main {
         for (Student tmp : student) {
             System.out.println(tmp.toString());
         }
+        System.out.println();
+
+        student.get(3).setGroupID(2);
+        studentTable.update(student.get(3));
+
+        student = studentTable.selectAll();
+        for (Student tmp: student) {
+            System.out.println(tmp.toString());
+        }
+        studentTable.delete(5);
 
         }
 

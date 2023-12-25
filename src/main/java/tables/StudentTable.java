@@ -33,8 +33,16 @@ public class StudentTable extends AbsTable{
 
     }
 
-    public void update(String) {
-
+    public void update(Student student) {
+        db = new MySQLConnector();
+        String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupID = '%d' WHERE id = '%d'",
+                tableName,
+                student.getFio(),
+                student.getSex(),
+                student.getGroupID(),
+                student.getId());
+        db.executeRequest(sqlQuery);
+        db.close();
     }
 
 // 5 задание, но тут надо подтягивать значения из других таблиц
@@ -47,7 +55,7 @@ public class StudentTable extends AbsTable{
 //    SELECT COUNT * as student_count FROM student;
 
     public int selectCountStudent() {
-        String sqlQuery = String.format("SELECT COUNT(*) AS student_count FROM %s;", tableName);
+        String sqlQuery = String.format("SELECT COUNT(*) AS student_count FROM '%s';", tableName);
         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         int count = 0;
         try {
@@ -65,7 +73,7 @@ public class StudentTable extends AbsTable{
 //    WHERE sex = 'woman';
 
     public ArrayList<Student> selectWomen(String sex,  String studentFio){
-        String sqlQuery = String.format("SELECT %s FROM %s WHERE sex = 'woman';", studentFio, tableName, sex);
+        String sqlQuery = String.format("SELECT '%s' FROM '%s' WHERE sex = 'woman';", studentFio, tableName, sex);
         return select(sqlQuery);
     }
 // как подтянуть значения? в классе student эти поля приватные...

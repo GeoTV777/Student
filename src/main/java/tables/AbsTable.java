@@ -56,5 +56,10 @@ public class AbsTable {
         return null;
     }
 
-
+    public void delete(int id) {
+        db = new MySQLConnector();
+        String sqlQuery = String.format("DELETE FROM %s WHERE id = '%d'", tableName, id);
+        db.executeRequest(sqlQuery);
+        db.close();
+    }
 }
