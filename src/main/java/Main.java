@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args){
         StudentTable studentTable = new StudentTable();
         ArrayList  <Student> student = studentTable.selectAll();
-//        int studentCount = studentTable.selectCountStudent();
-        if(studentTable.isEmpty()) {
+
+        if(student.size() <15) {
         studentTable.insert(new Student( "Петров Пётр Федорович", "man",1));
         studentTable.insert(new Student( "Федоткин Викто Сергеевич", "man",2));
         studentTable.insert(new Student("Владимиров Георгий Тимофеевич", "man",3));
@@ -24,20 +24,21 @@ public class Main {
         studentTable.insert(new Student( "Васильев Николай Иванович", "man",1));
         studentTable.insert(new Student("Светлова Светлана Петровна", "woman",3));
         studentTable.insert(new Student( "Петров Федор Петрович", "man",2));
+        student = studentTable.selectAll();
         }
         for (Student tmp : student) {
             System.out.println(tmp.toString());
         }
         System.out.println();
-
-        student.get(3).setGroupID(2);
+//  ошибок не вызывает, но и не работает
+        student.get(3).setGroupID(1);
         studentTable.update(student.get(3));
-
+// почему-то в консоли все id = 0
         student = studentTable.selectAll();
         for (Student tmp: student) {
             System.out.println(tmp.toString());
         }
-        studentTable.delete(5);
+//        studentTable.delete();
 
         }
 

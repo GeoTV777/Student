@@ -1,6 +1,7 @@
 package tables;
 
 import db.MySQLConnector;
+import objects.GroupStudent;
 import objects.Student;
 
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class StudentTable extends AbsTable{
         columns.put("groupID", "bigint");
         create();
     }
-    public ArrayList<Student> selectAll() {
+    public ArrayList<GroupStudent> selectAll() {
        String sqlQuery = String.format("SELECT * FROM %s", tableName);
         return select(sqlQuery);
     }
@@ -98,18 +99,18 @@ public class StudentTable extends AbsTable{
     }
         return students;
     }
-    public boolean isEmpty() {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("SELECT COUNT (*) AS count FROM %s", tableName);
-        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
-        try {
-            if(rs.next()) {
-                int count = rs.getInt("count");
-                return  count == 0;
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-        }
-        return true;
-    }
+//    public boolean isEmpty() {
+//        db = new MySQLConnector();
+//        String sqlQuery = String.format("SELECT COUNT (*) AS count FROM %s", tableName);
+//        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+//        try {
+//            if(rs.next()) {
+//                int count = rs.getInt("count");
+//                return  count == 0;
+//                }
+//            } catch (SQLException e) {
+//                throw new RuntimeException(e);
+//        }
+//        return true;
+//    }
   }

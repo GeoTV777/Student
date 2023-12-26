@@ -2,7 +2,7 @@ package tables;
 
 import db.IDBConnector;
 import db.MySQLConnector;
-import objects.Student;
+import objects.GroupStudent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,12 +16,14 @@ public class AbsTable {
     IDBConnector db;
 
     public AbsTable(String tableName) {
+
         this.tableName = tableName;
     }
 
     public void create() {
         this.columns = columns;
-        String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %S (%S)", this.tableName, convertMapColumnsToString());
+        String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %S (%S)",
+                this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
         db.close();
@@ -34,7 +36,7 @@ public class AbsTable {
         return result;
     }
 
-    public ArrayList<Student> selectAll() {
+    public ArrayList<GroupStudent> selectAll() {
         db = new MySQLConnector();
         String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
         ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);
@@ -59,6 +61,13 @@ public class AbsTable {
     public void delete(int id) {
         db = new MySQLConnector();
         String sqlQuery = String.format("DELETE FROM %s WHERE id = '%d'", tableName, id);
+        db.executeRequest(sqlQuery);
+        db.close();
+    }
+    // очистка всей таблицы
+    public void delete2() {
+        db = new MySQLConnector();
+        String sqlQuery = String.format("DELETE FROM %s",tableName);
         db.executeRequest(sqlQuery);
         db.close();
     }

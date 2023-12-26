@@ -1,10 +1,10 @@
 package objects;
 
-public class Group {
+public class GroupStudent {
     private long groupID, curatorID;
     private String name;
 
-    public  Group(long groupID, String name, long curatorID) {
+    public GroupStudent(long groupID, String name, long curatorID) {
         this.groupID = groupID;
         this.name = name;
         this.curatorID = curatorID;
