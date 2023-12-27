@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AbsTable {
@@ -36,7 +37,7 @@ public class AbsTable {
         return result;
     }
 
-    public ArrayList<GroupStudent> selectAll() {
+    public ArrayList<Objects> selectAll() {
         db = new MySQLConnector();
         String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
         ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);
@@ -71,4 +72,6 @@ public class AbsTable {
         db.executeRequest(sqlQuery);
         db.close();
     }
+
+
 }

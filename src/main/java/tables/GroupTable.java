@@ -7,7 +7,6 @@ import java.util.HashMap;
 import db.MySQLConnector;
 import objects.GroupStudent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class GroupTable extends AbsTable{
@@ -21,7 +20,7 @@ public class GroupTable extends AbsTable{
             create();
         }
 
-    public ArrayList<GroupStudent> selectAllGroup() {
+    public ArrayList<GroupStudent> selectAll() {
         String sqlQuery = String.format("SELECT * FROM %s", tableName);
         return select(sqlQuery);
     }

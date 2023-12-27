@@ -1,5 +1,6 @@
 package objects;
 
+
 public class GroupStudent {
     private long groupID, curatorID;
     private String name;
