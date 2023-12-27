@@ -20,7 +20,7 @@ public class StudentTable extends AbsTable{
         columns.put("groupID", "bigint");
         create();
     }
-    public ArrayList<GroupStudent> selectAll() {
+    public ArrayList<StudentTable> selectAllStudent() {
        String sqlQuery = String.format("SELECT * FROM %s", tableName);
         return select(sqlQuery);
     }

@@ -50,7 +50,7 @@ public class Main {
 
 
     private AbsTable groupStudent;
-        ArrayList<Objects> groupStudents = groupStudent.selectAll();
+        ArrayList<Student> groupStudents = groupStudent.selectAll();
         if(groupStudents.size() <3) {
         groupStudents.set(new GroupStudent("1","Первая","1");
         groupStudents.set(new GroupStudent("2","Вторая","2");
