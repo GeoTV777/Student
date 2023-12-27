@@ -6,12 +6,16 @@ import java.util.HashMap;
 
 import db.MySQLConnector;
 import objects.GroupStudent;
+
+import javax.swing.*;
 import java.util.ArrayList;
 
 
 public class GroupTable extends AbsTable{
 
-        public GroupTable() {
+    private GroupStudent groupStudent;
+
+    public GroupTable() {
            super("GroupStudent");
             columns = new HashMap<>();
             columns.put("groupId","bigint PRIMARY KEY AUTO_INCREMENT");
@@ -26,8 +30,9 @@ public class GroupTable extends AbsTable{
     }
 
     public void insert(GroupStudent groupStudent) {
+        this.groupStudent = groupStudent;
         db = new MySQLConnector();
-        String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES ('%s', '%d', '%s')",
+        String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",
                 tableName, groupStudent.getGroupID(), groupStudent.getName(), groupStudent.getCuratorID());
         db.executeRequest(sqlQuery);
         db.close();
@@ -35,13 +40,13 @@ public class GroupTable extends AbsTable{
     }
     public void update(GroupStudent groupStudent) {
         db = new MySQLConnector();
-        String sqlQuery = String.format("UPDATE %s SET '%d', WHERE groupId = '%d'",
+        String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
                 tableName, groupStudent.getCuratorID(), groupStudent.getGroupID());
         db.executeRequest(sqlQuery);
         db.close();
     }
 
-    public ArrayList select(String sqlQuery) {
+    public ArrayList <GroupStudent> select(String sqlQuery) {
         ArrayList<GroupStudent> groupStudents = new ArrayList<>();
         db = new MySQLConnector();
         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);

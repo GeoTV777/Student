@@ -3,11 +3,9 @@ import objects.GroupStudent;
 import objects.Student;
 import tables.AbsTable;
 import tables.CuratorTable;
-import tables.GroupTable;
 import tables.StudentTable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Main {
     public static void main(String[] args){
@@ -49,23 +47,23 @@ public class Main {
         }
 
 
-    private AbsTable groupStudent;
-        ArrayList<Student> groupStudents = groupStudent.selectAll();
+        GroupStudent groupStudent = new GroupStudent();
+        ArrayList<GroupStudent> groupStudents = groupStudent.sele;
         if(groupStudents.size() <3) {
-        groupStudents.set(new GroupStudent("1","Первая","1");
-        groupStudents.set(new GroupStudent("2","Вторая","2");
-        groupStudents.set(new GroupStudent("3","Третья","3");
+        groupStudents.insert(new GroupStudent("1","Первая","1"));
+        groupStudents.insert(new GroupStudent("2","Вторая","2"));
+        groupStudents.ivsert(new GroupStudent("3","Третья","3"));
         groupStudents = groupStudents.selectAll();
         }
         CuratorTable curatorTable = new CuratorTable();
-         ArrayList<Objects> curators = curatorTable.selectAll();
+         ArrayList<Curator> curators = curatorTable.selectAllCurator();
         if(curators.size() < 4) {
         curatorTable.insert(new CuratorTable("1", "Петров Петр Петрович"));
         curatorTable.insert(new CuratorTable("2", "Иванов Иван Иванович"));
         curatorTable.insert(new CuratorTable("3", "Георгиев Георгий Георгиевич"));
         curatorTable.insert(new CuratorTable("4", "Федоров Федор Федорович"));
         curatorTable = curatorTable.selectAll();
-        
+
     }
 
     }

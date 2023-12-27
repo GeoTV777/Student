@@ -2,13 +2,12 @@ package tables;
 
 import db.IDBConnector;
 import db.MySQLConnector;
-import objects.GroupStudent;
+import objects.Curator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AbsTable {
@@ -37,7 +36,7 @@ public class AbsTable {
         return result;
     }
 
-    public ArrayList<Objects> selectAll() {
+    public ArrayList<Curator> selectAll() {
         db = new MySQLConnector();
         String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
         ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);
