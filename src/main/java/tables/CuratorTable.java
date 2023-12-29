@@ -42,14 +42,14 @@ public class CuratorTable extends AbsTable {
               String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%s', '%d')",
                 tableName, curator.getCuratorID(),curator.getCuratorFio());
         db.executeRequest(sqlQuery);
-        db.close();
+
 
     }
     public void update(Curator curator) {
              String sqlQuery = String.format("UPDATE %s SET '%d', WHERE curatorId = '%d'",
                 tableName, curator.getCuratorID());
         db.executeRequest(sqlQuery);
-        db.close();
+
     }
 
         public ArrayList select (String sqlQuery){

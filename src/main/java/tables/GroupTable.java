@@ -51,14 +51,14 @@ public class GroupTable extends AbsTable{
         String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",
                 tableName, groupStudent.getGroupID(), groupStudent.getName(), groupStudent.getCuratorID());
         db.executeRequest(sqlQuery);
-        db.close();
+
 
     }
     public void update(GroupStudent groupStudent) {
             String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
                 tableName, groupStudent.getCuratorID(), groupStudent.getGroupID());
         db.executeRequest(sqlQuery);
-        db.close();
+
     }
 
     public ArrayList <GroupStudent> select(String sqlQuery) {
@@ -73,9 +73,9 @@ public class GroupTable extends AbsTable{
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } finally {
-            db.close();
+            return groupStudents;
         }
-        return groupStudents;
+
     }
     }
 

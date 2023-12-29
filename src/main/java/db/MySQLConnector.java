@@ -37,7 +37,7 @@ public class MySQLConnector implements IDBConnector {
            }
        }
 
-    @Override
+
     public static void close() {
         try {
             try {

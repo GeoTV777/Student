@@ -27,7 +27,7 @@ public class AbsTable {
                 this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
-        db.close();
+
     }
 
     private String convertMapColumnsToString() {
@@ -54,7 +54,7 @@ public class AbsTable {
         }catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
-            db.close();
+
         }
         return null;
     }
@@ -63,14 +63,14 @@ public class AbsTable {
         db = new MySQLConnector();
         String sqlQuery = String.format("DELETE FROM %s WHERE id = '%d'", tableName, id);
         db.executeRequest(sqlQuery);
-        db.close();
+
     }
     // очистка всей таблицы
     public void delete2() {
         db = new MySQLConnector();
         String sqlQuery = String.format("DELETE FROM %s",tableName);
         db.executeRequest(sqlQuery);
-        db.close();
+
     }
 
 

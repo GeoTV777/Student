@@ -67,8 +67,7 @@ public class StudentTable extends AbsTable{
                 student.getGroupID(),
                 student.getId());
         db.executeRequest(sqlQuery);
-        db.close();
-    }
+     }
 
 //
 //// 5 задание, но тут надо подтягивать значения из других таблиц
@@ -119,9 +118,9 @@ public class StudentTable extends AbsTable{
     } catch (SQLException sqlException) {
         sqlException.printStackTrace();
     } finally {
-        db.close();
+            return students;
     }
-        return students;
+
     }
 
   }
