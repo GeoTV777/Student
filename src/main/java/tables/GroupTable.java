@@ -47,7 +47,7 @@ public class GroupTable extends AbsTable{
         return groupStudents;
     }
 
-    public void insert(GroupStudent groupStudent) {
+    public void insertGroup(GroupStudent groupStudent) {
         this.groupStudent = groupStudent;
         db = new MySQLConnector();
         String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",

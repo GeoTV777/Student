@@ -39,7 +39,7 @@ public class CuratorTable extends AbsTable {
         return curators;
     }
 
-    public void insert(Curator curator) {
+    public void insertCurator (Curator curator) {
         db = new MySQLConnector();
         String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%s', '%d')",
                 tableName, curator.getCuratorID(),curator.getCuratorFio());

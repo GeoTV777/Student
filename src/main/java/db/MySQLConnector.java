@@ -38,7 +38,7 @@ public class MySQLConnector implements IDBConnector {
        }
 
     @Override
-    public void close() {
+    public static void close() {
         try {
             try {
                 if (statement != null && !statement.isClosed())
