@@ -72,10 +72,10 @@ public class GroupTable extends AbsTable{
             ));
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        } finally {
+        }
             return groupStudents;
         }
 
     }
-    }
+
 

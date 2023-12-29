@@ -117,10 +117,9 @@ public class StudentTable extends AbsTable{
         ));
     } catch (SQLException sqlException) {
         sqlException.printStackTrace();
-    } finally {
-            return students;
+    }
+        return students;
     }
 
     }
 
-  }

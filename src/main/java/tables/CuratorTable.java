@@ -63,7 +63,6 @@ public class CuratorTable extends AbsTable {
 
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
-            } finally {
             }
             return curators;
         }
