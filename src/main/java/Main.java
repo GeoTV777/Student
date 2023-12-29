@@ -1,8 +1,4 @@
-import objects.Curator;
-import objects.GroupStudent;
 import objects.Student;
-import tables.AbsTable;
-import tables.CuratorTable;
 import tables.StudentTable;
 
 import java.util.ArrayList;
@@ -10,61 +6,46 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         StudentTable studentTable = new StudentTable();
-        ArrayList <Student> student = studentTable.selectAll();
-
-        if(student.size() <15) {
+        ArrayList  <Student> student = studentTable.selectAll();
+//        int studentCount = studentTable.selectCountStudent();
+        if(studentTable.isEmpty()) {
         studentTable.insert(new Student( "Петров Пётр Федорович", "man",1));
         studentTable.insert(new Student( "Федоткин Викто Сергеевич", "man",2));
         studentTable.insert(new Student("Владимиров Георгий Тимофеевич", "man",3));
-        studentTable.insert(new Student( "Кошкина Алёна Геннадьевна", "woman",1));
-        studentTable.insert(new Student( "Алёнкина Алёнка Сергеевна", "woman",2));
-        studentTable.insert(new Student("Буратинкин Тимойей Герогиевич", "man",3));
-        studentTable.insert(new Student("Морозова Ирина Констанитовна", "woman",1));
-        studentTable.insert(new Student("Шапкин Александр Павлович", "man",2));
-        studentTable.insert(new Student("Подколодная Валентина Яковлевна", "woman",3));
-        studentTable.insert(new Student("Слуцкий Леонид Эдуардович", "man",1));
-        studentTable.insert(new Student( "Гатаулин Рашид Маратович", "man",2));
-        studentTable.insert(new Student("Балашова Надежда Петровна ", "woman",3));
+        studentTable.insert(new Student( "Кошкина Алёна Геннадьевна", "woman",4));
+        studentTable.insert(new Student( "Алёнкина Алёнка Сергеевна", "woman",1));
+        studentTable.insert(new Student("Буратинкин Тимойей Герогиевич", "man",2));
+        studentTable.insert(new Student("Морозова Ирина Констанитовна", "woman",3));
+        studentTable.insert(new Student("Шапкин Александр Павлович", "man",4));
+        studentTable.insert(new Student("Подколодная Валентина Яковлевна", "woman",1));
+        studentTable.insert(new Student("Слуцкий Леонид Эдуардович", "man",2));
+        studentTable.insert(new Student( "Гатаулин Рашид Маратович", "man",3));
+        studentTable.insert(new Student("Балашова Надежда Петровна ", "woman",4));
         studentTable.insert(new Student( "Васильев Николай Иванович", "man",1));
-        studentTable.insert(new Student("Светлова Светлана Петровна", "woman",2));
-        studentTable.insert(new Student( "Петров Федор Петрович", "man",3));
-        student = studentTable.selectAll();
+        studentTable.insert(new Student("Светлова Светлана Петровна", "woman",3));
+        studentTable.insert(new Student( "Петров Федор Петрович", "man",2));
         }
         for (Student tmp : student) {
             System.out.println(tmp.toString());
         }
         System.out.println();
-//  ошибок не вызывает, но и не работает
-        student.get(3).setGroupID(1);
+
+        student.get(3).setGroupID(2);
         studentTable.update(student.get(3));
-// почему-то в консоли все id = 0
+
         student = studentTable.selectAll();
         for (Student tmp: student) {
             System.out.println(tmp.toString());
         }
-//        studentTable.delete();
+        studentTable.delete(5);
+        System.out.println();
 
+        student = studentTable.selectAll();
+        for (Student tmp: student) {
+            System.out.println(tmp.toString());
         }
 
-
-        GroupStudent groupStudent = new GroupStudent();
-        ArrayList<GroupStudent> groupStudents = groupStudent.sele;
-        if(groupStudents.size() <3) {
-        groupStudents.insert(new GroupStudent("1","Первая","1"));
-        groupStudents.insert(new GroupStudent("2","Вторая","2"));
-        groupStudents.ivsert(new GroupStudent("3","Третья","3"));
-        groupStudents = groupStudents.selectAll();
         }
-        CuratorTable curatorTable = new CuratorTable();
-         ArrayList<Curator> curators = curatorTable.selectAllCurator();
-        if(curators.size() < 4) {
-        curatorTable.insert(new CuratorTable("1", "Петров Петр Петрович"));
-        curatorTable.insert(new CuratorTable("2", "Иванов Иван Иванович"));
-        curatorTable.insert(new CuratorTable("3", "Георгиев Георгий Георгиевич"));
-        curatorTable.insert(new CuratorTable("4", "Федоров Федор Федорович"));
-        curatorTable = curatorTable.selectAll();
-
-    }
 
     }
 
