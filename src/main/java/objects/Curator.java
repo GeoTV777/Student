@@ -14,6 +14,7 @@ public class Curator {
     }
 
     public void setCuratorID(long curatorID) {
+
         this.curatorID = curatorID;
     }
 

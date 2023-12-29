@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AbsTable {
@@ -22,7 +23,7 @@ public class AbsTable {
 
     public void create() {
         this.columns = columns;
-        String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %S (%S)",
+        String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %s (%s)",
                 this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
         db.executeRequest(sqlRequest);
@@ -36,7 +37,7 @@ public class AbsTable {
         return result;
     }
 
-    public ArrayList<Curator> selectAll() {
+    protected ArrayList selectAll() {
         db = new MySQLConnector();
         String sqlRequest = String.format("SELECT * FROM %s", this.tableName);
         ResultSet rs = this.db.executeRequestWithAnswer(sqlRequest);

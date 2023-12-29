@@ -2,21 +2,41 @@ package tables;
 
 import db.MySQLConnector;
 import objects.Curator;
+import objects.Student;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CuratorTable extends AbsTable {
+    private final static String Table_NAME = "curator";
     public CuratorTable() {
-        super("Curator");
+        super(Table_NAME);
         columns.put("curatorId", "bigint PRIMARY KEY AUTO_INCREMENT");
         columns.put("curatorFio", "varchar(50)");
         create();
     }
 
-    public ArrayList<Curator> selectAllCurator() {
+    public ArrayList<Curator> selectAll() {
         String sqlQuery = String.format("SELECT * FROM %s", tableName);
-        return select(sqlQuery);
+        return selectByQuery(sqlQuery);
+    }
+
+    private ArrayList<Curator> selectByQuery(String sqlQuery) {
+        ArrayList<Curator> curators = new ArrayList<>();
+        db = new MySQLConnector();
+        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+        try {
+            while (rs.next()) {
+                curators.add(new Curator(
+                        rs.getLong("curatorId"),
+                        rs.getString("curatorFio")
+                ));
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return curators;
     }
 
     public void insert(Curator curator) {
