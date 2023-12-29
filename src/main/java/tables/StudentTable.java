@@ -29,7 +29,6 @@ public class StudentTable extends AbsTable{
 
     private ArrayList<Student> selectByQuery(String sqlQuery) {
         ArrayList<Student> students = new ArrayList<>();
-        db = new MySQLConnector();
         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
             while (rs.next()) {
@@ -47,8 +46,7 @@ public class StudentTable extends AbsTable{
     }
 
     public void insert(Student student) {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%s', '%s', '%d')",
+            String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%s', '%s', '%d')",
                 tableName, student.getFio(), student.getSex(), student.getGroupID());
         db.executeRequest(sqlQuery);
     }
@@ -62,8 +60,7 @@ public class StudentTable extends AbsTable{
     }
 
     public void update(Student student) {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupID = '%d' WHERE id = '%d'",
+         String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupID = '%d' WHERE id = '%d'",
                 tableName,
                 student.getFio(),
                 student.getSex(),
@@ -111,7 +108,6 @@ public class StudentTable extends AbsTable{
 
     public ArrayList select(String sqlQuery) {
     ArrayList<Student> students = new ArrayList<>();
-    db = new MySQLConnector();
     ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
         while (rs.next()) students.add(new Student(

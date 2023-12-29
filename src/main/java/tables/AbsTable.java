@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class AbsTable {
     protected String tableName;
     protected Map<String, String> columns;
-    IDBConnector db;
 
+    protected IDBConnector db = new MySQLConnector();
     public AbsTable(String tableName) {
 
         this.tableName = tableName;

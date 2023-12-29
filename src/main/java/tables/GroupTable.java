@@ -31,8 +31,7 @@ public class GroupTable extends AbsTable{
     }
     private ArrayList<GroupStudent> selectByQuery(String sqlQuery) {
         ArrayList<GroupStudent> groupStudents = new ArrayList<>();
-        db = new MySQLConnector();
-        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
             while (rs.next()) {
                 groupStudents.add(new GroupStudent(
@@ -49,7 +48,6 @@ public class GroupTable extends AbsTable{
 
     public void insertGroup(GroupStudent groupStudent) {
         this.groupStudent = groupStudent;
-        db = new MySQLConnector();
         String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",
                 tableName, groupStudent.getGroupID(), groupStudent.getName(), groupStudent.getCuratorID());
         db.executeRequest(sqlQuery);
@@ -57,8 +55,7 @@ public class GroupTable extends AbsTable{
 
     }
     public void update(GroupStudent groupStudent) {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
+            String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
                 tableName, groupStudent.getCuratorID(), groupStudent.getGroupID());
         db.executeRequest(sqlQuery);
         db.close();
@@ -66,7 +63,6 @@ public class GroupTable extends AbsTable{
 
     public ArrayList <GroupStudent> select(String sqlQuery) {
         ArrayList<GroupStudent> groupStudents = new ArrayList<>();
-        db = new MySQLConnector();
         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
             while (rs.next()) groupStudents.add(new GroupStudent(
