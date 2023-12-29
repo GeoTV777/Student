@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import db.MySQLConnector;
+import objects.Curator;
 import objects.GroupStudent;
 
 import javax.swing.*;
@@ -26,7 +27,24 @@ public class GroupTable extends AbsTable{
 
     public ArrayList<GroupStudent> selectAllGroup() {
         String sqlQuery = String.format("SELECT * FROM %s", tableName);
-        return select(sqlQuery);
+        return selectByQuery(sqlQuery);
+    }
+    private ArrayList<GroupStudent> selectByQuery(String sqlQuery) {
+        ArrayList<GroupStudent> groupStudents = new ArrayList<>();
+        db = new MySQLConnector();
+        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+        try {
+            while (rs.next()) {
+                groupStudents.add(new GroupStudent(
+                        rs.getLong("groupId"),
+                        rs.getString("groupName"),
+                        rs.getLong("curatorId")
+                ));
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return groupStudents;
     }
 
     public void insert(GroupStudent groupStudent) {

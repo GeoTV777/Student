@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-//        try {
-
         StudentTable studentTable = new StudentTable();
 
         ArrayList<Student> students = studentTable.selectAll();
@@ -50,7 +48,7 @@ public class Main {
             System.out.println(tmp.toString());
         }
 
-//        }catch ();
+
     }
 }
 
