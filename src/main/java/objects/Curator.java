@@ -5,6 +5,7 @@ public class Curator {
     private String curatorFio;
 
     public Curator(long curatorID, String curatorFio) {
+        this.curatorID = curatorID;
         this.curatorFio = curatorFio;
     }
 
@@ -18,14 +19,16 @@ public class Curator {
     }
 
     public String getCuratorFio() {
+
         return curatorFio;
     }
 
     public void setCuratorFio(String curatorFio) {
+
         this.curatorFio = curatorFio;
     }
     public String toString() {
-        return "Curator{" +  " curatorFio "
-                + curatorFio + '}';
+        return "Curator{" +  "curatorID = " + curatorID +
+                " curatorFio " + curatorFio + '}';
     }
 }

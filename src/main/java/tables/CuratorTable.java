@@ -1,6 +1,8 @@
 package tables;
 
 import objects.Curator;
+import objects.GroupStudent;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,9 +43,9 @@ public class CuratorTable extends AbsTable {
               String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%d', '%s')",
                 tableName, curator.getCuratorID(),curator.getCuratorFio());
         db.executeRequest(sqlQuery);
-
-
     }
+
+
     public void update(Curator curator) {
              String sqlQuery = String.format("UPDATE %s SET '%d', WHERE curatorId = '%d'",
                 tableName, curator.getCuratorID());
