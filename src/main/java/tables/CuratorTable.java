@@ -13,7 +13,7 @@ public class CuratorTable extends AbsTable {
     public CuratorTable() {
         super(Table_NAME);
         columns = new HashMap<>();
-        columns.put("curatorId", "bigint PRIMARY KEY AUTO_INCREMENT");
+        columns.put("curatorId", "bigint PRIMARY KEY");
         columns.put("curatorFio", "varchar(50)");
         create();
     }

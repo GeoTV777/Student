@@ -18,23 +18,24 @@ public class Main {
         try {
             ArrayList<Student> students = studentTable.selectAll();
             if (students.size() <= 15) {
-                studentTable.insert(new Student("Петров Пётр Федорович", "man", 1));
-                studentTable.insert(new Student("Федоткин Викто Сергеевич", "man", 2));
-                studentTable.insert(new Student("Владимиров Георгий Тимофеевич", "man", 3));
-                studentTable.insert(new Student("Кошкина Алёна Геннадьевна", "woman", 1));
-                studentTable.insert(new Student("Алёнкина Алёнка Сергеевна", "woman", 2));
-                studentTable.insert(new Student("Буратинкин Тимойей Герогиевич", "man", 3));
-                studentTable.insert(new Student("Морозова Ирина Констанитовна", "woman", 1));
-                studentTable.insert(new Student("Шапкин Александр Павлович", "man", 2));
-                studentTable.insert(new Student("Подколодная Валентина Яковлевна", "woman", 3));
-                studentTable.insert(new Student("Слуцкий Леонид Эдуардович", "man", 1));
-                studentTable.insert(new Student("Гатаулин Рашид Маратович", "man", 2));
-                studentTable.insert(new Student("Балашова Надежда Петровна ", "woman", 3));
-                studentTable.insert(new Student("Васильев Николай Иванович", "man", 1));
-                studentTable.insert(new Student("Светлова Светлана Петровна", "woman", 2));
-                studentTable.insert(new Student("Петров Федор Петрович", "man", 3));
+                studentTable.insert(new Student(1, "Светлова Нина Сергеевна", "woman", 1));
+                studentTable.insert(new Student(2, "Федоров Василий Иванович", "man", 2));
+                studentTable.insert(new Student(3, "Лыжня Алевтина Андреевна", "woman", 3));
+                studentTable.insert(new Student(4, "Котик Сергей Николаевич", "man", 1));
+                studentTable.insert(new Student(5, "Гаджиев Павел Ашотович", "man", 2));
+                studentTable.insert(new Student(6, "Мышкина Алёна Георгиевна", "woman", 3));
+                studentTable.insert(new Student(7, "Пвлюхин Дмитрий Антонович", "man", 1));
+                studentTable.insert(new Student(8, "Николаева Татьяна Георгиевна", "woman", 2));
+                studentTable.insert(new Student(9, "Георгиев Николай Федорович", "man", 3));
+                studentTable.insert(new Student(10, "Лопухина Евдокия Фёдоровна", "woman", 1));
+                studentTable.insert(new Student(11, "Нарышкин Сергей Алексеевич", "man", 2));
+                studentTable.insert(new Student(12, "Луховская Анастасия Юрьевна", "woman", 3));
+                studentTable.insert(new Student(13, "Степанов Николай Григорьевич", "man", 1));
+                studentTable.insert(new Student(14, "Носикова Анастасия Сергеевна", "woman", 2));
+                studentTable.insert(new Student(15, "Григорьевский Юрий Федорович ", "man", 3));
                 students = studentTable.selectAll();
             }
+
             for (Student tmp : students) {
                 System.out.println(tmp.toString());
             }

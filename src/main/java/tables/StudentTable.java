@@ -12,7 +12,7 @@ public class StudentTable extends AbsTable{
     public StudentTable() {
         super(TABLE_NAME);
         columns = new HashMap<>();
-        columns.put("id", "bigint PRIMARY KEY AUTO_INCREMENT");
+        columns.put("id", "bigint PRIMARY KEY");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
         columns.put("groupID", "bigint");
@@ -43,8 +43,8 @@ public class StudentTable extends AbsTable{
     }
 
     public void insert(Student student) {
-            String sqlQuery = String.format("INSERT INTO %s (studentFio, sex, groupID) VALUES ('%s', '%s', '%d')",
-                tableName, student.getFio(), student.getSex(), student.getGroupID());
+            String sqlQuery = String.format("INSERT INTO %s (id, studentFio, sex, groupID) VALUES ('%d','%s', '%s', '%d')",
+                tableName, student.getId(), student.getFio(), student.getSex(), student.getGroupID());
         db.executeRequest(sqlQuery);
     }
     public void select(String[] columns, String[] whwre) {
@@ -107,7 +107,7 @@ public class StudentTable extends AbsTable{
     ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
         while (rs.next()) students.add(new Student(
-//                    rs.getLong("id"),
+                    rs.getLong("id"),
                 rs.getString("studentFio"),
                 rs.getString("sex"),
                 rs.getLong("groupID")
