@@ -1,14 +1,14 @@
 package objects;
 
 public class Student {
-    private long id, groupID;
+    private long id, groupId;
     private String studentFio, sex;
 
-    public Student(long id, String studentFio, String sex, long groupID) {
+    public Student(long id, String studentFio, String sex, long groupId) {
         this.id = id;
         this.studentFio = studentFio;
         this.sex = sex;
-        this. groupID = groupID;
+        this.groupId = groupId;
     }
 
 
@@ -41,17 +41,17 @@ public class Student {
         this.sex = sex;
     }
 
-    public long getGroupID() {
-        return groupID;
+    public long getGroupId() {
+        return groupId;
     }
 
-    public void setGroupID(long groupID) {
-        this.groupID = groupID;
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
     }
     public String toString() {
         return "Student{" + "id = " + id + ", studentFio "
                 + studentFio + '\'' + ", sex " + sex + '\''
-                + ", groupID = " + groupID + '}';
+                + ", groupId = " + groupId + '}';
 
         }
 
