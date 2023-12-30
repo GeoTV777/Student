@@ -1,17 +1,16 @@
 package tables;
 
-import db.MySQLConnector;
 import objects.Curator;
-import objects.Student;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CuratorTable extends AbsTable {
     private final static String Table_NAME = "curator";
     public CuratorTable() {
         super(Table_NAME);
+        columns = new HashMap<>();
         columns.put("curatorId", "bigint PRIMARY KEY AUTO_INCREMENT");
         columns.put("curatorFio", "varchar(50)");
         create();
@@ -39,7 +38,7 @@ public class CuratorTable extends AbsTable {
     }
 
     public void insertCurator (Curator curator) {
-              String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%s', '%d')",
+              String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%d', '%s')",
                 tableName, curator.getCuratorID(),curator.getCuratorFio());
         db.executeRequest(sqlQuery);
 

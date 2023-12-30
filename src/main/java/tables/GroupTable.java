@@ -4,20 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import db.MySQLConnector;
 import objects.Curator;
 import objects.GroupStudent;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 
 public class GroupTable extends AbsTable{
 
-    private GroupStudent groupStudent;
-
+    private final static String TABLE_NAME = "GroupStudent";
     public GroupTable() {
-           super("GroupStudent");
+           super(TABLE_NAME);
             columns = new HashMap<>();
             columns.put("groupId","bigint PRIMARY KEY AUTO_INCREMENT");
             columns.put("groupName","varchar(25)");
@@ -47,13 +43,12 @@ public class GroupTable extends AbsTable{
     }
 
     public void insertGroup(GroupStudent groupStudent) {
-        this.groupStudent = groupStudent;
-        String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",
+       String sqlQuery = String.format("INSERT INTO %s (groupId, groupName, curatorId) VALUES (%d, '%s', %d)",
                 tableName, groupStudent.getGroupID(), groupStudent.getName(), groupStudent.getCuratorID());
         db.executeRequest(sqlQuery);
-
-
     }
+
+
     public void update(GroupStudent groupStudent) {
             String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
                 tableName, groupStudent.getCuratorID(), groupStudent.getGroupID());

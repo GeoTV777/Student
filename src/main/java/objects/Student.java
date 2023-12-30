@@ -49,9 +49,9 @@ public class Student {
         this.groupID = groupID;
     }
     public String toString() {
-        return "Student{" + "id =" + id + ", studentFio"
-                + studentFio + '\'' + ", sex" + sex + '\''
-                + ", groupID =" + groupID + '}';
+        return "Student{" + "id = " + id + ", studentFio "
+                + studentFio + '\'' + ", sex " + sex + '\''
+                + ", groupID = " + groupID + '}';
 
         }
 

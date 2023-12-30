@@ -25,7 +25,7 @@ public class Curator {
         this.curatorFio = curatorFio;
     }
     public String toString() {
-        return "Curator{" +  " curatorFio"
+        return "Curator{" +  " curatorFio "
                 + curatorFio + '}';
     }
 }

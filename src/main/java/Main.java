@@ -12,10 +12,11 @@ public class Main {
     public static void main(String[] args) {
 
         StudentTable studentTable = new StudentTable();
+        GroupTable groupTable = new GroupTable();
+        CuratorTable curatorTable = new CuratorTable();
 
-        ArrayList<Student> students = studentTable.selectAll();
         try {
-
+            ArrayList<Student> students = studentTable.selectAll();
             if (students.size() <= 15) {
                 studentTable.insert(new Student("Петров Пётр Федорович", "man", 1));
                 studentTable.insert(new Student("Федоткин Викто Сергеевич", "man", 2));
@@ -39,26 +40,43 @@ public class Main {
             }
             System.out.println();
 
-            students.get(3).setGroupID(2);
-            studentTable.update(students.get(3));
-
-            students = studentTable.selectAll();
-            for (Student tmp : students) {
-                System.out.println(tmp.toString());
-            }
+//            students.get(3).setGroupID(2);
+//            studentTable.update(students.get(3));
+//
+//            students = studentTable.selectAll();
+//            for (Student tmp : students) {
+//                System.out.println(tmp.toString());
+//            }
 //        studentTable.delete(5);
 //        System.out.println();
 
-            students = studentTable.selectAll();
-            for (Student tmp : students) {
+//            students = studentTable.selectAll();
+//            for (Student tmp : students) {
+//                System.out.println(tmp.toString());
+//            }
+
+//        } finally {
+//            MySQLConnector.close();
+//        }
+//
+//        try {
+
+            ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
+            if (groupStudents.size() <= 3) {
+                groupTable.insertGroup(new GroupStudent(1, "A", 3));
+                groupTable.insertGroup(new GroupStudent(2, "B", 2));
+                groupTable.insertGroup(new GroupStudent(3, "C", 1));
+                groupStudents = groupTable.selectAllGroup();
+            }
+            for (GroupStudent tmp : groupStudents){
                 System.out.println(tmp.toString());
             }
-
-        } finally {
-            MySQLConnector.close();
-        }
-        try {
-            CuratorTable curatorTable = new CuratorTable();
+            System.out.println();
+//        } finally {
+//            MySQLConnector.close();
+//        }
+//
+//        try {
             ArrayList<Curator> curators = curatorTable.selectAll();
             if (curators.size() <= 4) {
                 curatorTable.insertCurator(new Curator(1, "Владимиров Владимир Владимирович"));
@@ -74,21 +92,7 @@ public class Main {
         } finally {
             MySQLConnector.close();
         }
-        try {
-            GroupTable groupTable = new GroupTable();
-            ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
-            if (groupStudents.size() <= 3) {
-                groupTable.insertGroup(new GroupStudent(1, "A", 3));
-                groupTable.insertGroup(new GroupStudent(2, "B", 2));
-                groupTable.insertGroup(new GroupStudent(3, "C", 1));
-                groupStudents = groupTable.selectAllGroup();
-            }
-            for (GroupStudent tmp : groupStudents){
-                System.out.println(tmp.toString());
-            }
-        } finally {
-            MySQLConnector.close();
-        }
     }
+
 }
 

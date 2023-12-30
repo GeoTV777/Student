@@ -36,8 +36,8 @@ public class GroupStudent {
     }
 
     public String toString() {
-        return "Group{" + "groupID =" + groupID + ", name"
-                + name + '\'' + ", curatorID =" + curatorID + '}';
+        return "Group{" + "groupID = " + groupID + ", name "
+                + name + '\'' + ", curatorID = " + curatorID + '}';
 
     }
 }
