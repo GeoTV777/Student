@@ -12,10 +12,11 @@ public class StudentTable extends AbsTable{
     public StudentTable() {
         super(TABLE_NAME);
         columns = new HashMap<>();
-        columns.put("id", "bigint PRIMARY KEY");
+        columns.put("studentId", "bigint PRIMARY KEY");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
         columns.put("groupId", "bigint");
+
         create();
     }
 
@@ -30,7 +31,7 @@ public class StudentTable extends AbsTable{
         try {
             while (rs.next()) {
                 students.add(new Student(
-                        rs.getLong("id"),
+                        rs.getLong("studentId"),
                         rs.getString("studentFio"),
                         rs.getString("sex"),
                         rs.getLong("groupId")
@@ -43,8 +44,8 @@ public class StudentTable extends AbsTable{
     }
 
     public void insert(Student student) {
-            String sqlQuery = String.format("INSERT INTO %s (id, studentFio, sex, groupId) VALUES ('%d','%s', '%s', '%d')",
-                tableName, student.getId(), student.getFio(), student.getSex(), student.getGroupId());
+            String sqlQuery = String.format("INSERT INTO %s (studentId, studentFio, sex, groupId) VALUES ('%d','%s', '%s', '%d')",
+                tableName, student.getStudentId(), student.getFio(), student.getSex(), student.getGroupId());
         db.executeRequest(sqlQuery);
     }
     public void select(String[] columns, String[] whwre) {
@@ -57,12 +58,12 @@ public class StudentTable extends AbsTable{
     }
 
     public void update(Student student) {
-         String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupId = '%d' WHERE id = '%d'",
+         String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupId = '%d' WHERE studentId = '%d'",
                 tableName,
                 student.getFio(),
                 student.getSex(),
                 student.getGroupId(),
-                student.getId());
+                student.getStudentId());
         db.executeRequest(sqlQuery);
      }
 
@@ -107,7 +108,7 @@ public class StudentTable extends AbsTable{
     ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
         try {
         while (rs.next()) students.add(new Student(
-                    rs.getLong("id"),
+                    rs.getLong("studentId"),
                 rs.getString("studentFio"),
                 rs.getString("sex"),
                 rs.getLong("groupId")

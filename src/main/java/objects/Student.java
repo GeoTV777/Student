@@ -1,11 +1,11 @@
 package objects;
 
 public class Student {
-    private long id, groupId;
+    private long studentId, groupId;
     private String studentFio, sex;
 
-    public Student(long id, String studentFio, String sex, long groupId) {
-        this.id = id;
+    public Student(long studentId, String studentFio, String sex, long groupId) {
+        this.studentId = studentId;
         this.studentFio = studentFio;
         this.sex = sex;
         this.groupId = groupId;
@@ -17,13 +17,13 @@ public class Student {
 //        this.sex = sex;
 //        this. groupID = groupID;
 //    }
-    public long getId() {
+    public long getStudentId() {
 
-        return id;
+        return studentId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
     }
 
     public String getFio() {
@@ -49,7 +49,7 @@ public class Student {
         this.groupId = groupId;
     }
     public String toString() {
-        return "Student{" + "id = " + id + ", studentFio "
+        return "Student{" + "studentId = " + studentId + ", studentFio "
                 + studentFio + '\'' + ", sex " + sex + '\''
                 + ", groupId = " + groupId + '}';
 
