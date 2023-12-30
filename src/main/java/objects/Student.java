@@ -4,11 +4,12 @@ public class Student {
     private long studentId, groupId;
     private String studentFio, sex;
 
-    public Student(long studentId, String studentFio, String sex, long groupId) {
-        this.studentId = studentId;
-        this.studentFio = studentFio;
-        this.sex = sex;
+    public Student(long groupId, String studentFio, String sex, long studentId) {
         this.groupId = groupId;
+                this.studentFio = studentFio;
+        this.sex = sex;
+        this.studentId = studentId;
+
     }
 
 

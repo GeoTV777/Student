@@ -12,10 +12,10 @@ public class StudentTable extends AbsTable{
     public StudentTable() {
         super(TABLE_NAME);
         columns = new HashMap<>();
-        columns.put("studentId", "bigint PRIMARY KEY");
+        columns.put("groupId", "bigint PRIMARY KEY");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
-        columns.put("groupId", "bigint");
+        columns.put("studentId", "bigint");
 
         create();
     }
@@ -31,10 +31,10 @@ public class StudentTable extends AbsTable{
         try {
             while (rs.next()) {
                 students.add(new Student(
-                        rs.getLong("studentId"),
+                        rs.getLong("groupId"),
                         rs.getString("studentFio"),
                         rs.getString("sex"),
-                        rs.getLong("groupId")
+                        rs.getLong("studentId")
                 ));
             }
         }catch (SQLException ex) {

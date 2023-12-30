@@ -56,11 +56,6 @@ public class Main {
 //                System.out.println(tmp.toString());
 //            }
 
-//        } finally {
-//            MySQLConnector.close();
-//        }
-//
-//        try {
 
             ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
             if (groupStudents.size() <= 3) {
@@ -73,11 +68,7 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
-//        } finally {
-//            MySQLConnector.close();
-//        }
-//
-//        try {
+
             ArrayList<Curator> curators = curatorTable.selectAll();
             if (curators.size() <= 4) {
                 curatorTable.insertCurator(new Curator(1, "Владимиров Владимир Владимирович"));
