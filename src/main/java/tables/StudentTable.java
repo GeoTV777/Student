@@ -12,7 +12,7 @@ public class StudentTable extends AbsTable{
     public StudentTable() {
         super(TABLE_NAME);
         columns = new HashMap<>();
-        columns.put("groupId", "bigint PRIMARY KEY");
+        columns.put("groupId", "bigint");
         columns.put("studentFio", "varchar(50)");
         columns.put("sex", "varchar(50)");
         columns.put("studentId", "bigint");

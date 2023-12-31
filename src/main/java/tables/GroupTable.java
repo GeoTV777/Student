@@ -15,7 +15,7 @@ public class GroupTable extends AbsTable{
     public GroupTable() {
            super(TABLE_NAME);
             columns = new HashMap<>();
-            columns.put("groupId","bigint PRIMARY KEY");
+            columns.put("groupId","bigint");
             columns.put("groupName","varchar(25)");
             columns.put("curatorId","bigint");
             create();
