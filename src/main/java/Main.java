@@ -20,6 +20,7 @@ public class Main {
         CuratorTable curatorTable = new CuratorTable();
 
         try {
+            System.out.println("Студенты");
             ArrayList<Student> students = studentTable.selectAll();
             if (students.size() <= 15) {
                 studentTable.insert(new Student(1, "Светлова Нина Сергеевна", "woman", 1));
@@ -60,7 +61,7 @@ public class Main {
 //                System.out.println(tmp.toString());
 //            }
 
-
+            System.out.println("Группы студентов");
             ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
             if (groupStudents.size() <= 3) {
                 groupTable.insertGroup(new GroupStudent(1, "A", 3));
@@ -73,6 +74,7 @@ public class Main {
             }
             System.out.println();
 
+            System.out.println("Кураторы");
             ArrayList<Curator> curators = curatorTable.selectAll();
             if (curators.size() <= 4) {
                 curatorTable.insertCurator(new Curator(1, "Владимиров Владимир Владимирович"));
@@ -86,8 +88,9 @@ public class Main {
             }
             System.out.println();
 
-            studentTable.select(new String[] {"groupID", "studentFio", "sex", "studentId"},new String[] {});
+//            Выводит в части селекта, но не получается задавать условия в части  where. Пишет: Группа 1, ну чушь!!
 
+            studentTable.select(new String[] {"groupID", "studentFio", "sex", "studentId"},new String[] {});
 
             for (Student student: students) {
                 System.out.println(" Группа: " + student.getGroupId());
