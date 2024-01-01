@@ -7,6 +7,10 @@ import tables.GroupTable;
 import tables.StudentTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static java.lang.String.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,18 +25,18 @@ public class Main {
                 studentTable.insert(new Student(1, "Светлова Нина Сергеевна", "woman", 1));
                 studentTable.insert(new Student(2, "Федоров Василий Иванович", "man", 2));
                 studentTable.insert(new Student(3, "Лыжня Алевтина Андреевна", "woman", 3));
-                studentTable.insert(new Student(4, "Котик Сергей Николаевич", "man", 1));
-                studentTable.insert(new Student(5, "Гаджиев Павел Ашотович", "man", 2));
-                studentTable.insert(new Student(6, "Мышкина Алёна Георгиевна", "woman", 3));
-                studentTable.insert(new Student(7, "Пвлюхин Дмитрий Антонович", "man", 1));
-                studentTable.insert(new Student(8, "Николаева Татьяна Георгиевна", "woman", 2));
-                studentTable.insert(new Student(9, "Георгиев Николай Федорович", "man", 3));
-                studentTable.insert(new Student(10, "Лопухина Евдокия Фёдоровна", "woman", 1));
-                studentTable.insert(new Student(11, "Нарышкин Сергей Алексеевич", "man", 2));
-                studentTable.insert(new Student(12, "Луховская Анастасия Юрьевна", "woman", 3));
-                studentTable.insert(new Student(13, "Степанов Николай Григорьевич", "man", 1));
-                studentTable.insert(new Student(14, "Носикова Анастасия Сергеевна", "woman", 2));
-                studentTable.insert(new Student(15, "Григорьевский Юрий Федорович ", "man", 3));
+                studentTable.insert(new Student(1, "Котик Сергей Николаевич", "man", 4));
+                studentTable.insert(new Student(2, "Гаджиев Павел Ашотович", "man", 5));
+                studentTable.insert(new Student(3, "Мышкина Алёна Георгиевна", "woman", 6));
+                studentTable.insert(new Student(1, "Пвлюхин Дмитрий Антонович", "man", 7));
+                studentTable.insert(new Student(2, "Николаева Татьяна Георгиевна", "woman", 8));
+                studentTable.insert(new Student(3, "Георгиев Николай Федорович", "man", 9));
+                studentTable.insert(new Student(1, "Лопухина Евдокия Фёдоровна", "woman", 10));
+                studentTable.insert(new Student(2, "Нарышкин Сергей Алексеевич", "man", 11));
+                studentTable.insert(new Student(3, "Луховская Анастасия Юрьевна", "woman", 12));
+                studentTable.insert(new Student(1, "Степанов Николай Григорьевич", "man", 13));
+                studentTable.insert(new Student(2, "Носикова Анастасия Сергеевна", "woman", 14));
+                studentTable.insert(new Student(3, "Григорьевский Юрий Федорович ", "man", 15));
                 students = studentTable.selectAll();
             }
 
@@ -78,6 +82,15 @@ public class Main {
                 curators = curatorTable.selectAll();
             }
             for (Curator tmp : curators) {
+                System.out.println(tmp.toString());
+            }
+            System.out.println();
+
+            studentTable.select(new String[] {"studentFio"},new String[] {"groupId = 3"});
+            String[] columns = {"studentFio"};
+            String[] where = {"groupId = 3"};
+
+            for (Student tmp : students) {
                 System.out.println(tmp.toString());
             }
 

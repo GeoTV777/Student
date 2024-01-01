@@ -58,6 +58,24 @@ public class AbsTable {
         }
         return null;
     }
+    public void select(String[] columns, String[] where) {
+        db = new MySQLConnector();
+
+        String columnStr = "*";
+        if (columns.length > 0) {
+            columnStr = String.join(",", columns);
+
+            String whereStr = "*";
+            if (columns.length > 0) {
+                whereStr = String.join(",", where);
+
+            }
+            String sqlQuery = String.format("SELECT %s FROM %s%s", columnStr, tableName, whereStr);
+            db.executeRequest(sqlQuery);
+        }
+    }
+
+
 
     public void delete(int id) {
         db = new MySQLConnector();
