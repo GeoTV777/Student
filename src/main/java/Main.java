@@ -86,11 +86,14 @@ public class Main {
             }
             System.out.println();
 
-            studentTable.select(new String[] {"studentFio"},new String[] {});
+            studentTable.select(new String[] {"groupID", "studentFio", "sex", "studentId"},new String[] {});
 
-// Выводит один столбец код = 0!!
+
             for (Student student: students) {
-                System.out.println(student.getFio());
+                System.out.println(" Группа: " + student.getGroupId());
+                System.out.print(" ФИО студента: " + student.getFio());
+                System.out.print(" Пол студента: " + student.getSex());
+                System.out.print(" ID  студента: " + student.getStudentId());
             }
 
         } finally {
