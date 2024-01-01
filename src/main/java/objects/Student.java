@@ -6,7 +6,7 @@ public class Student {
 
     public Student(long groupId, String studentFio, String sex, long studentId) {
         this.groupId = groupId;
-                this.studentFio = studentFio;
+        this.studentFio = studentFio;
         this.sex = sex;
         this.studentId = studentId;
 

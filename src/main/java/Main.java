@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.String.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -86,12 +86,11 @@ public class Main {
             }
             System.out.println();
 
-            studentTable.select(new String[] {"studentFio"},new String[] {"groupId = 3"});
-            String[] columns = {"studentFio"};
-            String[] where = {"groupId = 3"};
+            studentTable.select(new String[] {"studentFio"},new String[] {});
 
-            for (Student tmp : students) {
-                System.out.println(tmp.toString());
+// Выводит один столбец код = 0!!
+            for (Student student: students) {
+                System.out.println(student.getFio());
             }
 
         } finally {
