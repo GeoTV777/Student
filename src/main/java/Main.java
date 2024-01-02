@@ -87,17 +87,16 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
+            System.out.println("Вывод только студенток");
+            System.out.println();
 
-//            Выводит в части селекта, но не получается задавать условия в части  where. Пишет: Группа 1, ну чушь!!
+            ArrayList<Student> womenStudent = studentTable.selectAllWomen();
 
-            studentTable.select(new String[] {"groupID", "studentFio", "sex", "studentId"},new String[] {});
+                for (Student student : womenStudent){
+                    System.out.println("" + student.getFio());
+                }
 
-            for (Student student: students) {
-                System.out.println(" Группа: " + student.getGroupId());
-                System.out.print(" ФИО студента: " + student.getFio());
-                System.out.print(" Пол студента: " + student.getSex());
-                System.out.print(" ID  студента: " + student.getStudentId());
-            }
+
 
         } finally {
             MySQLConnector.close();

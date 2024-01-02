@@ -1,5 +1,6 @@
 package tables;
 
+import db.MySQLConnector;
 import objects.Student;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,12 +96,13 @@ public class StudentTable extends AbsTable{
 ////    FROM student
 ////    WHERE sex = 'woman';
 //
-//    public ArrayList<Student> selectWomen(String sex,  String studentFio){
-//        String sqlQuery = String.format("SELECT '%s' FROM '%s' WHERE sex = 'woman';", studentFio, tableName, sex);
-//        return select(sqlQuery);
-//    }
-//// как подтянуть значения? в классе student эти поля приватные...
-//
+
+    public ArrayList<Student> selectAllWomen(){
+        db = new MySQLConnector();
+        final String sqlRequest = String.format("SELECT * FROM %s WHERE sex = 'woman' ", tableName);
+        ResultSet rs = db.executeRequestWithAnswer(sqlRequest);
+        return resultSetToArray(rs);
+    }
 
 
     public ArrayList select(String sqlQuery) {
@@ -118,6 +120,24 @@ public class StudentTable extends AbsTable{
     }
         return students;
     }
+    private ArrayList<Student> resultSetToArray(ResultSet rs){
+        ArrayList<Student> result = new ArrayList<>();
+           try {
+               while (rs.next()) {
 
+                result.add(
+                        new Student(
+                                rs.getLong("studentId"),
+                                rs.getString("studentFio"),
+                                rs.getString("sex"),
+                                rs.getLong("groupId"))
+                   );
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+        }
+        return result;
+    }
     }
 
