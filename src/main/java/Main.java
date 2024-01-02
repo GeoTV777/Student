@@ -95,7 +95,11 @@ public class Main {
                 for (Student student : womenStudent){
                     System.out.println("" + student.getFio());
                 }
+            System.out.println();
+            System.out.println("Вывод количества студентов");
 
+        int count= studentTable.selectCountStudent();
+            System.out.println("Количество студентов:" + count);
 
 
         } finally {
