@@ -5,21 +5,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Curator {
-    private long curatorId;
+    private long curatorID;
     private String curatorFio;
 
-    public Curator(long curatorId, String curatorFio) {
-        this.curatorId = curatorId;
+    public Curator(long curatorID, String curatorFio) {
+        this.curatorID = curatorID;
         this.curatorFio = curatorFio;
     }
 
-    public long getCuratorId() {
-        return curatorId;
+    public long getCuratorID() {
+        return curatorID;
     }
 
-    public void setCuratorId(long curatorId) {
+    public void setCuratorID(long curatorID) {
 
-        this.curatorId = curatorId;
+        this.curatorID = curatorID;
     }
 
     public String getCuratorFio() {
@@ -32,25 +32,8 @@ public class Curator {
         this.curatorFio = curatorFio;
     }
     public String toString() {
-        return "Curator{" +  "curatorID = " + curatorId +
+        return "Curator{" +  "curatorID = " + curatorID +
                 " curatorFio " + curatorFio + '}';
     }
-    private ArrayList<Curator> resultSetToArray(ResultSet rs){
-        ArrayList<objects.Curator> result = new ArrayList<>();
-        try {
-            while (rs.next()) {
 
-                result.add(
-                        new objects.Curator(
-                                rs.getLong("curatorId"),
-                                rs.getString("curatorFio")
-
-                        ));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-        }
-        return result;
-    }
 }

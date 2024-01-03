@@ -49,12 +49,16 @@ public class StudentTable extends AbsTable{
                 tableName, student.getStudentId(), student.getFio(), student.getSex(), student.getGroupId());
         db.executeRequest(sqlQuery);
     }
-    public void select(String[] columns, String[] whwre) {
+    public void select(String[] columns, String[] where) {
         String columnStr = "*";
         if(columns.length >0) {
             columnStr = String. join(",", columns);
         }
-        String sqlQuery = String.format("SELECT %s FROM student", columnStr);
+        String whereStr = "";
+        if(columns.length >0) {
+            columnStr = String. join(",", where);
+        }
+        String sqlQuery = String.format("SELECT %s FROM student", columnStr, whereStr);
         db.executeRequest(sqlQuery);
     }
 

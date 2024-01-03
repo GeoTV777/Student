@@ -1,6 +1,7 @@
 package tables;
 
 import objects.Curator;
+import objects.GroupStudent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,31 +41,61 @@ public class CuratorTable extends AbsTable {
 
     public void insertCurator (Curator curator) {
               String sqlQuery = String.format("INSERT INTO %s (curatorId, curatorFio) VALUES ('%d', '%s')",
-                tableName, curator.getCuratorId(),curator.getCuratorFio());
+                tableName, curator.getCuratorID(),curator.getCuratorFio());
         db.executeRequest(sqlQuery);
     }
 
 
     public void update(Curator curator) {
              String sqlQuery = String.format("UPDATE %s SET '%d', WHERE curatorId = '%d'",
-                tableName, curator.getCuratorId());
+                tableName, curator.getCuratorID());
         db.executeRequest(sqlQuery);
 
     }
-
-        public ArrayList select (String sqlQuery){
-            ArrayList<Curator> curators = new ArrayList<>();
-                  ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
-            try {
-                while (rs.next()) curators.add(new Curator(
-                        rs.getLong("curatorId"),
-                        rs.getString("curatorFio")
-                ));
-
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            return curators;
+    public void select(String[] columns, String[] where) {
+        String columnStr = "*";
+        if(columns.length >0) {
+            columnStr = String. join(",", columns);
         }
+        String whereStr = "";
+        if(columns.length >0) {
+            columnStr = String. join(",", where);
+        }
+        String sqlQuery = String.format("SELECT %s FROM curator", columnStr, whereStr);
+        db.executeRequest(sqlQuery);
+    }
+
+
+//        public ArrayList select (String sqlQuery){
+//            ArrayList<Curator> curators = new ArrayList<>();
+//                  ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
+//            try {
+//                while (rs.next()) curators.add(new Curator(
+//                        rs.getLong("curatorId"),
+//                        rs.getString("curatorFio")
+//                ));
+//
+//            } catch (SQLException sqlException) {
+//                sqlException.printStackTrace();
+//            }
+//            return curators;
+//        }
+private ArrayList<Curator> resultSetToArray(ResultSet rs){
+    ArrayList<objects.Curator> result = new ArrayList<>();
+    try {
+        while (rs.next()) {
+
+            result.add(
+                    new objects.Curator(
+                            rs.getLong("curatorId"),
+                            rs.getString("curatorFio")
+                    ));
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+    }
+    return result;
+}
     }
 
