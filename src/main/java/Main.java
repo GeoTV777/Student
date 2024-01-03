@@ -46,21 +46,6 @@ public class Main {
             }
             System.out.println();
 
-//            students.get(3).setGroupID(2);
-//            studentTable.update(students.get(3));
-//
-//            students = studentTable.selectAll();
-//            for (Student tmp : students) {
-//                System.out.println(tmp.toString());
-//            }
-//        studentTable.delete(5);
-//        System.out.println();
-
-//            students = studentTable.selectAll();
-//            for (Student tmp : students) {
-//                System.out.println(tmp.toString());
-//            }
-
             System.out.println("Группы студентов");
             ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
             if (groupStudents.size() <= 3) {
@@ -100,6 +85,12 @@ public class Main {
 
         int count= studentTable.selectCountStudent();
             System.out.println("Количество студентов:" + count);
+
+            System.out.println();
+            System.out.println("");
+
+
+
 
 
         } finally {

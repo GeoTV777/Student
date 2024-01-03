@@ -68,16 +68,6 @@ public class StudentTable extends AbsTable{
         db.executeRequest(sqlQuery);
      }
 
-//
-//// 5 задание, но тут надо подтягивать значения из других таблиц
-//// SELECT st.id, st.fio, st.sex, g.name, c.fio
-//// FROM student as st
-//// JOIN `group` as g ON st.group_id = g.id_group
-//// JOIN curator as c ON g.id_curator = c.id_curator;
-//
-//// 6 задание: вывести на экран количество студентов
-////    SELECT COUNT * as student_count FROM student;
-//
     public int selectCountStudent() {
         String sqlQuery = String.format("SELECT COUNT(*) AS student_count FROM %s;", tableName);
         ResultSet rs = db.executeRequestWithAnswer(sqlQuery);

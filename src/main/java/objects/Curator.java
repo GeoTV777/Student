@@ -1,21 +1,25 @@
 package objects;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Curator {
-    private long curatorID;
+    private long curatorId;
     private String curatorFio;
 
-    public Curator(long curatorID, String curatorFio) {
-        this.curatorID = curatorID;
+    public Curator(long curatorId, String curatorFio) {
+        this.curatorId = curatorId;
         this.curatorFio = curatorFio;
     }
 
-    public long getCuratorID() {
-        return curatorID;
+    public long getCuratorId() {
+        return curatorId;
     }
 
-    public void setCuratorID(long curatorID) {
+    public void setCuratorId(long curatorId) {
 
-        this.curatorID = curatorID;
+        this.curatorId = curatorId;
     }
 
     public String getCuratorFio() {
@@ -28,7 +32,25 @@ public class Curator {
         this.curatorFio = curatorFio;
     }
     public String toString() {
-        return "Curator{" +  "curatorID = " + curatorID +
+        return "Curator{" +  "curatorID = " + curatorId +
                 " curatorFio " + curatorFio + '}';
+    }
+    private ArrayList<Curator> resultSetToArray(ResultSet rs){
+        ArrayList<objects.Curator> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                result.add(
+                        new objects.Curator(
+                                rs.getLong("curatorId"),
+                                rs.getString("curatorFio")
+
+                        ));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+        }
+        return result;
     }
 }

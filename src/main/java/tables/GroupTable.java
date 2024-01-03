@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import objects.Curator;
 import objects.GroupStudent;
+import objects.Student;
+
 import java.util.ArrayList;
 
 
@@ -70,6 +72,24 @@ public class GroupTable extends AbsTable{
         }
             return groupStudents;
         }
+    private ArrayList<GroupStudent> resultSetToArray(ResultSet rs){
+        ArrayList<objects.GroupStudent> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                result.add(
+                        new objects.GroupStudent(
+                                rs.getLong("groupId"),
+                                rs.getString("groupName"),
+                                rs.getLong("curatorId")
+                ));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+        }
+        return result;
+    }
 
     }
 
