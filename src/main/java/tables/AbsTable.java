@@ -2,13 +2,12 @@ package tables;
 
 import db.IDBConnector;
 import db.MySQLConnector;
-import objects.Curator;
+import objects.Student;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AbsTable {
@@ -58,7 +57,7 @@ public class AbsTable {
         }
         return null;
     }
-    public void select(String[] columns, String[] where) {
+    public ResultSet select(String[] columns, String[] where) {
         db = new MySQLConnector();
 
         String columnStr = "*";
@@ -73,7 +72,9 @@ public class AbsTable {
             String sqlQuery = String.format("SELECT %s FROM %s%s", columnStr, tableName, whereStr);
             db.executeRequest(sqlQuery);
         }
+        return null;
     }
+
 
 
 
@@ -90,5 +91,24 @@ public class AbsTable {
         db.executeRequest(sqlQuery);
 
     }
+//    private ArrayList resultSetToArray(ResultSet rs){
+//        ArrayList<Object> result = new ArrayList<>();
+//        try {
+//            while (rs.next()) {
+//
+//                result.add(
+//                        new Object(
+//                                rs.getLong("studentId"),
+//                                rs.getString("studentFio"),
+//                                rs.getString("sex"),
+//                                rs.getLong("groupId"))
+//                );
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        } finally {
+//        }
+//        return result;
+//    }
 
 }

@@ -52,18 +52,19 @@ public class CuratorTable extends AbsTable {
         db.executeRequest(sqlQuery);
 
     }
-    public void select(String[] columns, String[] where) {
-        String columnStr = "*";
-        if(columns.length >0) {
-            columnStr = String. join(",", columns);
-        }
-        String whereStr = "";
-        if(columns.length >0) {
-            columnStr = String. join(",", where);
-        }
-        String sqlQuery = String.format("SELECT %s FROM curator", columnStr, whereStr);
-        db.executeRequest(sqlQuery);
-    }
+//    public ResultSet select(String[] columns, String[] where) {
+//        String columnStr = "*";
+//        if(columns.length >0) {
+//            columnStr = String. join(",", columns);
+//        }
+//        String whereStr = "";
+//        if(columns.length >0) {
+//            columnStr = String. join(",", where);
+//        }
+//        String sqlQuery = String.format("SELECT %s FROM curator", columnStr, whereStr);
+//        db.executeRequest(sqlQuery);
+//        return null;
+//    }
 
 
 //        public ArrayList select (String sqlQuery){
@@ -80,22 +81,26 @@ public class CuratorTable extends AbsTable {
 //            }
 //            return curators;
 //        }
-private ArrayList<Curator> resultSetToArray(ResultSet rs){
-    ArrayList<objects.Curator> result = new ArrayList<>();
-    try {
-        while (rs.next()) {
 
-            result.add(
-                    new objects.Curator(
+
+        public ArrayList<Curator> resultSetToArray(ResultSet rs){
+        ArrayList<objects.Curator> result = new ArrayList<>();
+            try {
+                    while (rs.next()) {
+
+                        result.add(
+                        new objects.Curator(
                             rs.getLong("curatorId"),
                             rs.getString("curatorFio")
-                    ));
+
+                        ));
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
     } finally {
     }
     return result;
+
 }
     }
 

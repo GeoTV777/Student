@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import objects.Curator;
 import objects.GroupStudent;
-import objects.Student;
 
 import java.util.ArrayList;
 
@@ -72,19 +70,20 @@ public class GroupTable extends AbsTable{
 //        }
 //            return groupStudents;
 //        }
-    public void select(String[] columns, String[] where) {
-        String columnStr = "*";
-        if(columns.length >0) {
-            columnStr = String. join(",", columns);
-        }
-        String whereStr = "";
-        if(columns.length >0) {
-            columnStr = String. join(",", where);
-        }
-        String sqlQuery = String.format("SELECT %s FROM groupStudent", columnStr, whereStr);
-        db.executeRequest(sqlQuery);
-    }
-    private ArrayList<GroupStudent> resultSetToArray(ResultSet rs){
+//    public ResultSet select(String[] columns, String[] where) {
+//        String columnStr = "*";
+//        if(columns.length >0) {
+//            columnStr = String. join(",", columns);
+//        }
+//        String whereStr = "";
+//        if(columns.length >0) {
+//            columnStr = String. join(",", where);
+//        }
+//        String sqlQuery = String.format("SELECT %s FROM groupStudent", columnStr, whereStr);
+//        db.executeRequest(sqlQuery);
+//        return null;
+//    }
+    public ArrayList<GroupStudent> resultSetToArray(ResultSet rs){
         ArrayList<objects.GroupStudent> result = new ArrayList<>();
         try {
             while (rs.next()) {

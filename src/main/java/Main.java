@@ -6,6 +6,8 @@ import tables.CuratorTable;
 import tables.GroupTable;
 import tables.StudentTable;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Main {
         StudentTable studentTable = new StudentTable();
         GroupTable groupTable = new GroupTable();
         CuratorTable curatorTable = new CuratorTable();
+        MySQLConnector connector = new MySQLConnector();
 
         try {
             System.out.println("Студенты");
@@ -82,17 +85,41 @@ public class Main {
                 }
             System.out.println();
             System.out.println("Вывод количества студентов");
+            System.out.println();
 
         int count= studentTable.selectCountStudent();
             System.out.println("Количество студентов:" + count);
 
             System.out.println();
-            System.out.println("");
+            System.out.println("Вывод информации о всех студентах с названиями групп и фио кураторов");
+            System.out.println();
+
+            ResultSet resultSet = connector.executeRequestWithAnswer("SELECT student.studentId, " +
+                    "student.studentFio, student.sex, groupStudent.groupName, curator.curatorFio\n" +
+                    "FROM student \n" +
+                    "JOIN groupStudent  ON student.groupId = groupStudent.groupId\n" +
+                    "JOIN curator ON groupStudent.curatorId = curator.curatorId; ");
+
+            while (resultSet.next()) {
+                int studentId = resultSet.getInt("studentId");
+                String studentFio = resultSet.getString("studentFio");
+                String sex = resultSet.getString("sex");
+                String groupName = resultSet.getString("groupName");
+                String curatorFio = resultSet.getString("curatorFio");
+
+                System.out.println(" ID  студента: " + studentId + "   ФИО студента: " + studentFio
+                        + "   Пол студента:  " + sex + "   Группа: " + groupName + "   ФИО куратора:  " + curatorFio);
+            }
+
+            System.out.println();
+            System.out.println("Обновить данные по группе А, сменив куратора на Федорова Федора Федоровича ");
+            System.out.println();
 
 
 
 
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
             MySQLConnector.close();
         }
