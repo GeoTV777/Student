@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import objects.GroupStudent;
+import objects.Student;
 
 import java.util.ArrayList;
 
@@ -51,10 +52,13 @@ public class GroupTable extends AbsTable{
 
     public void update(GroupStudent groupStudent) {
             String sqlQuery = String.format("UPDATE %s SET %d, WHERE groupId = %d",
-                tableName, groupStudent.getCuratorID(), groupStudent.getGroupID());
+                tableName,
+                groupStudent.getCuratorID(),
+                groupStudent.getGroupID());
         db.executeRequest(sqlQuery);
 
     }
+
 
 //    public ArrayList <GroupStudent> select(String sqlQuery) {
 //        ArrayList<GroupStudent> groupStudents = new ArrayList<>();

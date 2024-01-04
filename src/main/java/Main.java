@@ -6,6 +6,7 @@ import tables.CuratorTable;
 import tables.GroupTable;
 import tables.StudentTable;
 
+import javax.sound.midi.Soundbank;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -112,11 +113,22 @@ public class Main {
             }
 
             System.out.println();
-            System.out.println("Обновить данные по группе А, сменив куратора на Федорова Федора Федоровича ");
+            System.out.println("Обновить данные по группе C, сменив куратора на Федорова Федора Федоровича ");
+            System.out.println("Вывод результата замены: группы и их кураторы");
             System.out.println();
 
+            connector.executeRequest("UPDATE groupStudent SET curatorId = 4 WHERE groupName = 'C'");
 
 
+       ResultSet updateResultSet = connector.executeRequestWithAnswer("SELECT groupStudent.groupName, curator.curatorFio " +
+               "FROM groupStudent JOIN curator ON groupStudent.curatorId = curator.curatorId;");
+            while (updateResultSet.next()){
+                String groupName = updateResultSet.getString("groupName");
+                String curatorFio = updateResultSet.getString("curatorFio");
+
+                System.out.println("Группа " + groupName + "  ФИО куратора  " + curatorFio);
+
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
