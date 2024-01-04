@@ -75,40 +75,4 @@ public class AbsTable {
         return null;
     }
 
-
-
-
-    public void delete(int id) {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("DELETE FROM %s WHERE id = '%d'", tableName, id);
-        db.executeRequest(sqlQuery);
-
-    }
-    // очистка всей таблицы
-    public void delete2() {
-        db = new MySQLConnector();
-        String sqlQuery = String.format("DELETE FROM %s",tableName);
-        db.executeRequest(sqlQuery);
-
-    }
-//    private ArrayList resultSetToArray(ResultSet rs){
-//        ArrayList<Object> result = new ArrayList<>();
-//        try {
-//            while (rs.next()) {
-//
-//                result.add(
-//                        new Object(
-//                                rs.getLong("studentId"),
-//                                rs.getString("studentFio"),
-//                                rs.getString("sex"),
-//                                rs.getLong("groupId"))
-//                );
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//        }
-//        return result;
-//    }
-
 }

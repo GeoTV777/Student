@@ -23,12 +23,10 @@ public class Curator {
     }
 
     public String getCuratorFio() {
-
         return curatorFio;
     }
 
     public void setCuratorFio(String curatorFio) {
-
         this.curatorFio = curatorFio;
     }
     public String toString() {

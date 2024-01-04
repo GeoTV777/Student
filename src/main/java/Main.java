@@ -5,15 +5,9 @@ import objects.Student;
 import tables.CuratorTable;
 import tables.GroupTable;
 import tables.StudentTable;
-
-import javax.sound.midi.Soundbank;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
 
 public class Main {
     public static void main(String[] args) {
@@ -50,6 +44,7 @@ public class Main {
             }
             System.out.println();
 
+
             System.out.println("Группы студентов");
             ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
             if (groupStudents.size() <= 3) {
@@ -62,6 +57,7 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
+
 
             System.out.println("Кураторы");
             ArrayList<Curator> curators = curatorTable.selectAll();
@@ -76,19 +72,23 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
+
+
             System.out.println("Вывод только студенток");
             System.out.println();
 
             ArrayList<Student> womenStudent = studentTable.selectAllWomen();
 
-                for (Student student : womenStudent){
+            for (Student student : womenStudent){
                     System.out.println("" + student.getFio());
-                }
+            }
             System.out.println();
+
+
             System.out.println("Вывод количества студентов");
             System.out.println();
 
-        int count= studentTable.selectCountStudent();
+            int count= studentTable.selectCountStudent();
             System.out.println("Количество студентов:" + count);
 
             System.out.println();
@@ -119,7 +119,7 @@ public class Main {
             connector.executeRequest("UPDATE groupStudent SET curatorId = 4 WHERE groupName = 'C'");
 
 
-       ResultSet updateResultSet = connector.executeRequestWithAnswer("SELECT groupStudent.groupName, " +
+            ResultSet updateResultSet = connector.executeRequestWithAnswer("SELECT groupStudent.groupName, " +
                "curator.curatorFio FROM groupStudent JOIN curator ON groupStudent.curatorId = curator.curatorId;");
             while (updateResultSet.next()){
                 String groupName = updateResultSet.getString("groupName");
@@ -135,11 +135,11 @@ public class Main {
             ResultSet duoResaltSet = connector.executeRequestWithAnswer("SELECT student.studentFio FROM student " +
                     "JOIN groupStudent ON student.groupId = groupStudent.groupId WHERE groupStudent.groupName = " +
                     "(  SELECT groupName FROM groupStudent WHERE groupName = 'B');");
-                while (duoResaltSet.next()){
-                    String studentFio = duoResaltSet.getString("studentFio");
+            while (duoResaltSet.next()){
+                String studentFio = duoResaltSet.getString("studentFio");
 
                     System.out.println("Студенты группы В:  " + studentFio);
-                }
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

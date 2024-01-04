@@ -12,12 +12,6 @@ public class Student {
 
     }
 
-
-//        public Student(String studentFio, String sex, long groupID) {
-//        this.studentFio = studentFio;
-//        this.sex = sex;
-//        this. groupID = groupID;
-//    }
     public long getStudentId() {
 
         return studentId;
