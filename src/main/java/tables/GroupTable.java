@@ -59,34 +59,6 @@ public class GroupTable extends AbsTable{
 
     }
 
-
-//    public ArrayList <GroupStudent> select(String sqlQuery) {
-//        ArrayList<GroupStudent> groupStudents = new ArrayList<>();
-//        ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
-//        try {
-//            while (rs.next()) groupStudents.add(new GroupStudent(
-//                    rs.getLong("groupId"),
-//                    rs.getString("groupName"),
-//                    rs.getLong("curatorId")
-//            ));
-//        } catch (SQLException sqlException) {
-//            sqlException.printStackTrace();
-//        }
-//            return groupStudents;
-//        }
-//    public ResultSet select(String[] columns, String[] where) {
-//        String columnStr = "*";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", columns);
-//        }
-//        String whereStr = "";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", where);
-//        }
-//        String sqlQuery = String.format("SELECT %s FROM groupStudent", columnStr, whereStr);
-//        db.executeRequest(sqlQuery);
-//        return null;
-//    }
     public ArrayList<GroupStudent> resultSetToArray(ResultSet rs){
         ArrayList<objects.GroupStudent> result = new ArrayList<>();
         try {

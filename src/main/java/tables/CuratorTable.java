@@ -52,36 +52,6 @@ public class CuratorTable extends AbsTable {
         db.executeRequest(sqlQuery);
 
     }
-//    public ResultSet select(String[] columns, String[] where) {
-//        String columnStr = "*";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", columns);
-//        }
-//        String whereStr = "";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", where);
-//        }
-//        String sqlQuery = String.format("SELECT %s FROM curator", columnStr, whereStr);
-//        db.executeRequest(sqlQuery);
-//        return null;
-//    }
-
-
-//        public ArrayList select (String sqlQuery){
-//            ArrayList<Curator> curators = new ArrayList<>();
-//                  ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
-//            try {
-//                while (rs.next()) curators.add(new Curator(
-//                        rs.getLong("curatorId"),
-//                        rs.getString("curatorFio")
-//                ));
-//
-//            } catch (SQLException sqlException) {
-//                sqlException.printStackTrace();
-//            }
-//            return curators;
-//        }
-
 
         public ArrayList<Curator> resultSetToArray(ResultSet rs){
         ArrayList<objects.Curator> result = new ArrayList<>();

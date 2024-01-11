@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AbsTable {
+public abstract class AbsTable {
     protected String tableName;
     protected Map<String, String> columns;
 

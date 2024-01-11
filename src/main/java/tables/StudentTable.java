@@ -49,19 +49,6 @@ public class StudentTable extends AbsTable{
                 tableName, student.getStudentId(), student.getFio(), student.getSex(), student.getGroupId());
         db.executeRequest(sqlQuery);
     }
-//    public ResultSet select(String[] columns, String[] where) {
-//        String columnStr = "*";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", columns);
-//        }
-//        String whereStr = "";
-//        if(columns.length >0) {
-//            columnStr = String. join(",", where);
-//        }
-//        String sqlQuery = String.format("SELECT %s FROM student", columnStr, whereStr);
-//        db.executeRequest(sqlQuery);
-//        return null;
-//    }
 
     public void update(Student student) {
          String sqlQuery = String.format("UPDATE %s SET studentFio = '%s', sex = '%s', groupId = '%d' WHERE studentId = '%d'",
@@ -88,7 +75,6 @@ public class StudentTable extends AbsTable{
     }
 
 
-
     public ArrayList<Student> selectAllWomen(){
         db = new MySQLConnector();
         final String sqlRequest = String.format("SELECT * FROM %s WHERE sex = 'woman' ", tableName);
@@ -97,21 +83,6 @@ public class StudentTable extends AbsTable{
     }
 
 
-//    public ArrayList select(String sqlQuery) {
-//    ArrayList<Student> students = new ArrayList<>();
-//    ResultSet rs = db.executeRequestWithAnswer(sqlQuery);
-//        try {
-//        while (rs.next()) students.add(new Student(
-//                 rs.getLong("studentId"),
-//                rs.getString("studentFio"),
-//                rs.getString("sex"),
-//                rs.getLong("groupId")
-//        ));
-//    } catch (SQLException sqlException) {
-//        sqlException.printStackTrace();
-//    }
-//        return students;
-//    }
     public ArrayList<Student> resultSetToArray(ResultSet rs){
         ArrayList<Student> result = new ArrayList<>();
            try {
