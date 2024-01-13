@@ -5,8 +5,6 @@ import objects.Student;
 import tables.CuratorTable;
 import tables.GroupTable;
 import tables.StudentTable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
@@ -15,7 +13,6 @@ public class Main {
         StudentTable studentTable = new StudentTable();
         GroupTable groupTable = new GroupTable();
         CuratorTable curatorTable = new CuratorTable();
-        MySQLConnector connector = new MySQLConnector();
 
         try {
             System.out.println("Студенты");
@@ -43,9 +40,8 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
-
-
             System.out.println("Группы студентов");
+
             ArrayList<GroupStudent> groupStudents = groupTable.selectAllGroup();
             if (groupStudents.size() <= 3) {
                 groupTable.insertGroup(new GroupStudent(1, "A", 3));
@@ -57,9 +53,8 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
-
-
             System.out.println("Кураторы");
+
             ArrayList<Curator> curators = curatorTable.selectAll();
             if (curators.size() <= 4) {
                 curatorTable.insertCurator(new Curator(1, "Владимиров Владимир Владимирович"));
@@ -72,8 +67,6 @@ public class Main {
                 System.out.println(tmp.toString());
             }
             System.out.println();
-
-
             System.out.println("Вывод только студенток");
             System.out.println();
 
@@ -83,8 +76,6 @@ public class Main {
                     System.out.println("" + student.getFio());
             }
             System.out.println();
-
-
             System.out.println("Вывод количества студентов");
             System.out.println();
 
@@ -95,58 +86,25 @@ public class Main {
             System.out.println("Вывод информации о всех студентах с названиями групп и фио кураторов");
             System.out.println();
 
-            ResultSet resultSet = connector.executeRequestWithAnswer("SELECT student.studentId, " +
-                    "student.studentFio, student.sex, groupStudent.groupName, curator.curatorFio FROM student " +
-                    "JOIN groupStudent  ON student.groupId = groupStudent.groupId JOIN curator ON " +
-                    "groupStudent.curatorId = curator.curatorId; ");
-
-            while (resultSet.next()) {
-                int studentId = resultSet.getInt("studentId");
-                String studentFio = resultSet.getString("studentFio");
-                String sex = resultSet.getString("sex");
-                String groupName = resultSet.getString("groupName");
-                String curatorFio = resultSet.getString("curatorFio");
-
-                System.out.println(" ID  студента: " + studentId + "   ФИО студента: " + studentFio
-                        + "   Пол студента:  " + sex + "   Группа: " + groupName + "   ФИО куратора:  " + curatorFio);
-            }
+            studentTable.printStudentGroupNameCuratorFio();
 
             System.out.println();
             System.out.println("Обновить данные по группе C, сменив куратора на Федорова Федора Федоровича ");
             System.out.println("Вывод результата замены: группы и их кураторы  после смены куратора");
             System.out.println();
 
-            connector.executeRequest("UPDATE groupStudent SET curatorId = 4 WHERE groupName = 'C'");
+            curatorTable.updateCuratorInGroupC();
+            groupTable.printRezultExchang();
 
-
-            ResultSet updateResultSet = connector.executeRequestWithAnswer("SELECT groupStudent.groupName, " +
-               "curator.curatorFio FROM groupStudent JOIN curator ON groupStudent.curatorId = curator.curatorId;");
-            while (updateResultSet.next()){
-                String groupName = updateResultSet.getString("groupName");
-                String curatorFio = updateResultSet.getString("curatorFio");
-
-                System.out.println("Группа " + groupName + "  ФИО куратора  " + curatorFio);
-
-            }
             System.out.println();
             System.out.println("Вывод студентов из группы В");
             System.out.println();
 
-            ResultSet duoResaltSet = connector.executeRequestWithAnswer("SELECT student.studentFio FROM student " +
-                    "JOIN groupStudent ON student.groupId = groupStudent.groupId WHERE groupStudent.groupName = " +
-                    "(  SELECT groupName FROM groupStudent WHERE groupName = 'B');");
-            while (duoResaltSet.next()){
-                String studentFio = duoResaltSet.getString("studentFio");
+            studentTable.printStudentGroupB();
 
-                    System.out.println("Студенты группы В:  " + studentFio);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         } finally {
             MySQLConnector.close();
         }
     }
-
 }
 

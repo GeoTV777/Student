@@ -1,15 +1,17 @@
 package tables;
 
 import objects.Curator;
-import objects.GroupStudent;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import db.MySQLConnector;
+
 
 public class CuratorTable extends AbsTable {
+    MySQLConnector connector = new MySQLConnector();
     private final static String Table_NAME = "curator";
+
     public CuratorTable() {
         super(Table_NAME);
         columns = new HashMap<>();
@@ -45,32 +47,9 @@ public class CuratorTable extends AbsTable {
         db.executeRequest(sqlQuery);
     }
 
-
-    public void update(Curator curator) {
-             String sqlQuery = String.format("UPDATE %s SET '%d', WHERE curatorId = '%d'",
-                tableName, curator.getCuratorID());
-        db.executeRequest(sqlQuery);
-
+    public void updateCuratorInGroupC() {
+            connector.executeRequest("UPDATE groupStudent SET curatorId = 4 WHERE groupName = 'C'");
     }
-
-        public ArrayList<Curator> resultSetToArray(ResultSet rs){
-        ArrayList<objects.Curator> result = new ArrayList<>();
-            try {
-                    while (rs.next()) {
-
-                        result.add(
-                        new objects.Curator(
-                            rs.getLong("curatorId"),
-                            rs.getString("curatorFio")
-
-                        ));
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-    }
-    return result;
 
 }
-    }
 
