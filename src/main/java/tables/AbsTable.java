@@ -21,7 +21,6 @@ public abstract class AbsTable {
     }
 
     public void create() {
-        this.columns = columns;
         String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %s (%s)",
                 this.tableName, convertMapColumnsToString());
         db = new MySQLConnector();
@@ -52,25 +51,6 @@ public abstract class AbsTable {
             }
         }catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-
-        }
-        return null;
-    }
-    public ResultSet select(String[] columns, String[] where) {
-        db = new MySQLConnector();
-
-        String columnStr = "*";
-        if (columns.length > 0) {
-            columnStr = String.join(",", columns);
-
-            String whereStr = "*";
-            if (columns.length > 0) {
-                whereStr = String.join(",", where);
-
-            }
-            String sqlQuery = String.format("SELECT %s FROM %s%s", columnStr, tableName, whereStr);
-            db.executeRequest(sqlQuery);
         }
         return null;
     }
